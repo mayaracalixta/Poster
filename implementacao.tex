@@ -1,0 +1,63 @@
+
+\section{Metodologia}
+\setlength{\parindent}{2cm}
+
+O projeto se divide em três vertentes principais que são elas o gerador de clocks, sensor velocidade e o projeto semáforo que serão descritas de maneira detalhada a seguir.
+
+\subsection{Gerador de clocks}
+\setlength{\parindent}{2cm}
+
+Nesta etapa usamos comandos sequências para estabelecer todos os clocks que necessitamos no sistema e para tando criamos as seguintes variáveis:
+
+\begin{itemize}
+\item clk-maquina - Será acionamento manualmente através de seu pino especifico 
+\item temp1, temp0  - Responsável por definir a temporização especifica para cada clock, sendo temp1 =0 e temp0 = 0 clock da temporização A (Sinal acai ou  guaraná), temp1 =0 e temp0 = 1 clock da temporização B (sinal acai ou guaraná, temp1 =1 e temp0 = 0 clock da temporização C (Sinal acai ou guaraná) .
+\item clk-saida-gua,clk-saida-acai - Após toda logica sequencial for executada isso resultara em dois clocks sendo este definidos de acordo com a temporização estabelecida.
+\end{itemize}
+
+\setlength{\parindent}{2cm}
+
+obs: Para não haver poluimento visual todo o código se encontrara em anexo
+
+\subsection{Projeto Semafóro}
+\subsection{Sensor de Velocidade}
+
+\vskip3ex
+\begin{figure}
+\centering
+\includegraphics[width=0.99\columnwidth]{w.eps}
+\end{figure}
+\vskip3ex
+
+
+
+\setlength{\parindent}{2cm}
+O radar de velocidade é composto por dois sensores de pressão localizados na via e que estão distantes 30 metros um do outro. O cálculo da velocidade do veículo é baseado no intervalo de tempo entre as ativações dos dois sensores. Se a velocidade do veículo for superior a 36 quilômetros por hora, o motorista deverá ser processado.
+
+\section{Implementação}
+
+O aluno deverá implementar o sistema de semáforos em FPGA, utilizando os seguintes pinos:
+\begin{itemize}
+    \justifying
+    \item LEDR[0], LEDR[1] e LEDR[2] - Luzes vermelha, amarela e verde do semáforo da Av. Açaí respectivamente.
+    \item LEDG[6], LEDG[7] e LEDG[8] - Luzes vermelha, amarela e verde do semáforo da R. Guaraná respectivamente.
+    \item SW[0] e SW[1] - Chaves que selecionam os modos: "00" para temporização A, "01" para temporização B e "10" para temporização C.
+    \item KEY[0] e KEY[1] -  Sensores de pressão (ativados no '0').
+    \item LEDG[0] - Aviso de veículo com velocidade adequada.
+    \item LEDR[17] - Aviso de veículo com velocidade inadequada.
+\end{itemize}
+
+\section{Apresentação de Resultados}
+
+\setlength{\parindent}{2cm}
+Toda a implementação do projeto utilizará apenas os conceitos apresentados em sala de aula, tendo uma pontuação reduzida significativamente caso isso seja violado.
+
+Os resultados deverão ser apresentados em formato de pôster como este disponível em: \href{https://github.com/kenreurisondca/Poster-Circuitos-Digitais}{Pôster Modelo}. Contendo:
+\begin{itemize}
+    \item Descrição da metodologia;
+    \item Diagramas \textit{RTL}, com comentários;
+    \item Simulações \textit{waveform} que descrevem o funcionamento dos semáforos e do radar.
+\end{itemize}
+\vskip2ex
+
+O prazo para a entrega do pôster com os códigos fontes do projeto compactados será \textbf{01 de Novembro} (não precisam imprimir) via SIGAA. E a apresentação do grupo ocorrerá no dia \textbf{02 de Novembro} em sala de aula.
