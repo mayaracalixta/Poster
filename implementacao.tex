@@ -2,7 +2,7 @@
 \section{Desenvolvimento}
 \setlength{\parindent}{2cm}
 
-O projeto se divide em três vertentes principais que são elas o gerador de clocks, sensor velocidade e o projeto semáforo que serão descritas de maneira detalhada a seguir.
+O projeto se divide em três vertentes principais que são elas: o gerador de clocks, sensor velocidade e o projeto semáforo que serão descritas de maneira detalhada a seguir.
 
 \subsection{Gerador de clocks}
 \setlength{\parindent}{2cm}
@@ -10,28 +10,44 @@ O projeto se divide em três vertentes principais que são elas o gerador de clo
 Nesta etapa usamos comandos sequências para estabelecer todos os clocks que necessitamos no sistema e para tando criamos as seguintes variáveis:
 
 \begin{itemize}
-\item clk-maquina - Será acionamento manualmente através de seu pino especifico 
-\item temp1, temp0  - Responsável por definir a temporização especifica para cada clock, sendo temp1 =0 e temp0 = 0 clock da temporização A (Sinal acai ou  guaraná), temp1 =0 e temp0 = 1 clock da temporização B (sinal acai ou guaraná, temp1 =1 e temp0 = 0 clock da temporização C (Sinal acai ou guaraná) .
+\item clk-maquina - Será o clock automático de frequência de 27GHz 
+
+\item temp1, temp0  - Responsável por definir a temporização especifica para cada clock
+
+temp1 =0 e temp0 = 0 clock da temporização A (Sinal acai e guaraná)
+
+temp1 =0 e temp0 = 1 clock da temporização B (sinal acai e guaraná) 
+
+temp1 =1 e temp0 = 0 clock da temporização C (Sinal acai e guaraná)
+
 \item clk-saida-gua,clk-saida-acai - Após toda logica sequencial for executada isso resultara em dois clocks sendo este definidos de acordo com a temporização estabelecida.
+
 \end{itemize}
 
 \setlength{\parindent}{2cm}
 
 obs: Para não haver poluimento visual todo o código se encontrara em anexo
 
-\subsection{Projeto Semafóro}
-
-\subsection{Sensor de Velocidade}
+\subsection{Projeto Semáforo}
 
 \setlength{\parindent}{2cm}
 
-Da mesma forma feita nos quesitos anteriores usamos uma estrutura de comandos sequenciais para a obtenção dos resultados.
-    
+Nesta etapa desenvolvemos o sistema de semáforos tendo e para isto se faz necessário o uso de todos os clocks as temporizações para que com elas podemos obter as equações lógicas para cada luz do semáforo, tendo para isso o uso das seguintes variáveis.
+
 \begin{itemize}
-\item clk-maquina -  O clock responsável para definir o funcionamento do percurso do veiculo em questão.  
-\item botao1,botao2 - Como a velocidade de um veiculo se limita quando este no sinal amarelo então quando botao1 = 1 e botao2 = 0 contasse quando vezes esse veiculo passa e por fim verificasse se já chegou no limite.
-\item velocidade-ok,velocidade-bad - A saída será caracteriza de acordo com o limite especificado anteriormente, se este atingir o limite velocidade-ok = 0 e velocidade-bad = 1 e o contrario caso o limite não for excedido.  
+\item  clk-maquina - Será o clock automático de frequência de 27GHz 
+\item guarana-vermelho,guarana-amarelo,guarana-verde - Luzes do sinal guarana
+\item temp1, temp0  - Temporização de cada sinal 
+\item acai-vermelho,acai-amarelo,acai-verde - Luzes do sinal acai
 \end{itemize}
+
+\setlength{\parindent}{2cm}
+Seguindo com o raciocínio usando na implementação do projeto usamos o item Gerador de clock anteriormente como componente e através da funcionalidade portmap, para passar todos os parâmetros necessários para obter todos os clocks para as três temporizações requisitadas.
+
+Para entender o funcionamento do sistema de forma obsoleta vamos analisar a seguir a simulação no wawerform de todos os sinais nas três temporizações que o trabalho estabelece.
+
+
+Para Temporização A
 
 \vskip3ex
 \begin{figure}
@@ -40,6 +56,28 @@ Da mesma forma feita nos quesitos anteriores usamos uma estrutura de comandos se
 \end{figure}
 \vskip3ex
 
+Para Temporização B 
+
+\vskip3ex
+\begin{figure}
+\centering
+\includegraphics[width=0.99\columnwidth]{w.eps}
+\end{figure}
+\vskip3ex
+
+Para Temporização C 
+
+\vskip3ex
+\begin{figure}
+\centering
+\includegraphics[width=0.99\columnwidth]{w.eps}
+\end{figure}
+\vskip3ex
+
+
+\subsection{Sensor de Velocidade}
+
+\setlength{\parindent}{2cm}
 
 \section{Resultados Conclusivos}
 
