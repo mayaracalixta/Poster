@@ -1,0 +1,60 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity Contador3s is
+	
+	port(
+		clk_maquina : in std_logic;
+		botao2 : in std_logic;
+		passou_o_tempo : out std_logic
+	);
+	
+end Contador3s;
+
+architecture Contador3s of Contador3s is
+
+	component flipFlopJK is
+		port(
+			J,K : in std_logic;
+			clear, preset : in std_logic;
+			clk : in std_logic;
+			Q : out std_logic
+		);
+	end component
+	
+	signal J2,K2,J1,K1,J0,K0 : std_logic;
+	signal Q2,Q1,Q0 : std_logic;
+	signal Qf2,Qf1,Qf0 : std_logic;
+	
+	begin
+	
+	J2 <= '0';
+	K2 <= '0';
+	J1 <= not(Q2) and not(Q1) and Q0;
+	K1 <= not(Q2) and Q1 and Q0;
+	J0 <= '1';
+	K0 <= '1';
+	
+	ff22 : flipFlopJK port map(J2,K2,'1','1',clk_out,Qf2);
+	ff11 : flipFlopJK port map(J1,K1,'1','1',clk_out,Qf1);
+	ff00 : flipFlopJK port map(J0,K0,'1','1',clk_out,Qf0);
+	
+	Q2 <= Qf2;
+	Q1 <= Qf1;
+	Q0 <= Qf0;
+	
+	process(botao2,passou_o_tempo,Q1,Q0)
+	
+	begin
+		
+		if(botao2 = '1' and Q1 = '1' and Q0 = '1') then
+			
+			passou_o_tempo = '1';
+			
+		else
+			passou_o_tempo = '0';
+		end if;
+	
+	end process
+	
+end architecture;

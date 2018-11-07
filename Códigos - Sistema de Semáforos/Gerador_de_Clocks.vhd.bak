@@ -1,0 +1,58 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity Gerador_de_Clocks is
+	port(
+		clk_maquina : in std_logic;
+		tempo : integer;
+		clk_saida : out std_logic
+   );
+	
+end Gerador_de_Clocks;
+
+architecture Gerador_de_Clocks of Gerador_de_Clocks is
+
+	signal contador : integer := 1;
+	signal valor : std_logic;
+
+	begin
+		process(clk_maquina,contador)
+			begin
+				if(clk_maquina='1' and clk_maquina'Event) then
+					if(tempo=3) then
+						if contador = 27*3 then
+							valor <= not(valor);
+							contador <= 1;
+						else
+							contador <= contador + 1;
+						end if;
+					end if;
+					if(tempo=10) then
+						if contador = 27*10 then
+							valor <= not(valor);
+							contador <= 1;
+						else
+							contador <= contador + 1;
+						end if;
+					end if;
+					if(tempo=20) then
+						if contador = 27*20 then
+							valor <= not(valor);
+							contador <= 1;
+						else
+							contador <= contador + 1;
+						end if;
+					end if;
+					if(tempo=30) then
+						if contador = 27*30 then
+							valor <= not(valor);
+							contador <= 1;
+						else
+							contador <= contador + 1;
+						end if;
+					end if;
+				end if;
+		end process;
+	
+	clk_saida <= valor;
+end architecture;

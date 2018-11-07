@@ -1,0 +1,44 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity Sensor_Velocidade is
+	port(
+		clk_maquina : in std_logic;
+		botao1,botao2 : in std_logic;
+		velocidade_ok : out std_logic;
+		);
+	
+end Sensor_Velocidade;
+
+architecture Sensor_Velocidade of Sensor_Velocidade is
+
+	signal contador : integer := 0;
+	signal resultado : std_logic;
+	
+	begin
+		
+		process(contador,botao1,botao2,clk_maquina)
+			
+			begin
+			
+				if(botao1 = '1')
+					
+					if(botao2 = '0' and clk_maquina'Event)
+					
+						contador <= contador+1;
+					
+					end if;
+					
+				end if;
+				
+				if( (30/contador)*3600000 > 36) then
+				
+					velocidade_ok <= '0';
+				else
+					velocidade_ok <= '1';
+				
+				end if;
+				
+		end process;		
+
+end architecture;

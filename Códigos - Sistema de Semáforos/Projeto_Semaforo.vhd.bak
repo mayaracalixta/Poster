@@ -1,0 +1,27 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity Projeto_Semaforo is
+	port(
+		clk_maquina : in std_logic;
+		temp1,temp0 : in std_logic;
+		clk_teste : out std_logic
+);
+
+architecture Projeto_Semaforo of Projeto_Semaforo is
+	
+	component Gerador_de_Clocks is
+		port(
+			clk_maquina : in std_logic;
+			tempo : integer;
+			clk_saida : out std_logic
+		);
+	end component;
+	
+	signal clk_auxiliar : std_logic;
+	
+	begin
+		teste : Gerador_de_Clocks port map(clk_maquina,3,clk_auxiliar);
+		clk_teste <= clk_auxiliar;
+	
+end architecture;
